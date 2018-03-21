@@ -235,9 +235,9 @@ public class Front extends JFrame {
     	for(int x=0;x<3;x++) {
     		add(enterp[x]);
     	}
-    	
+       setResizable(false);
        setTitle("Password Tester");
-       setSize(700, 800);
+       setSize(700, 700);
        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
