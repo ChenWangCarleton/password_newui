@@ -50,7 +50,8 @@ public class Front extends JFrame {
 	ArrayList<ArrayList<String>> third=new ArrayList<>();
 	int counter=0;//flags for how many attempts the user had for current password
 	
-	
+	//for entering
+	int[][] ra=new int[3][16];
 	//images
 	String[][] img=new String[3][16];
     File[] source=new File("img").listFiles();
@@ -75,7 +76,12 @@ public class Front extends JFrame {
 				img[y][x]=source[sour[x]].listFiles()[rand.nextInt(source[sour[x]].listFiles().length)].getPath();
 			}
 		}
-		
+		for(int y=0;y<3;y++) {
+			shuffleArray(sour);
+			for(int x=0;x<16;x++) {
+				ra[y][x]=sour[x];
+			}
+		}	
 		userl.setPreferredSize(new Dimension(600,50));
 		textl.setPreferredSize(new Dimension(600,50));
 

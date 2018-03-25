@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 public class forentering extends JDialog implements ActionListener {
 	Front f;
+	int WIDTH=1000;
 	//radiobutton part
 	//password
 	int[] res=new int[6];
@@ -67,7 +68,7 @@ setup();
 add(img,BorderLayout.CENTER);
 add(rPanel,BorderLayout.SOUTH);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    setSize(new Dimension(800,600));
+    setSize(new Dimension(WIDTH,600));
   }
   public void setupimg() {
 	  File[] fs=new File("icon").listFiles();
@@ -76,9 +77,9 @@ add(rPanel,BorderLayout.SOUTH);
 		  fornum[x]=new JLabel(num[x]);
 	  }
 	  for(int x=0;x<16;x++) {
-		  ii[x]=new ImageIcon(new ImageIcon(f.img[f.current][x]).getImage().getScaledInstance(199,149, Image.SCALE_DEFAULT));
+		  ii[x]=new ImageIcon(new ImageIcon(f.img[f.current][f.ra[f.current][x]]).getImage().getScaledInstance(WIDTH/4,149, Image.SCALE_DEFAULT));
 		  jl[x]=new JLabel(ii[x]);
-		  jl[x].setBounds(0, 0, 199, 149);
+		  jl[x].setBounds(0, 0, WIDTH/4, 149);
 		  jlp[x]=new JLayeredPane();
 		  jlp[x].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		  jlp[x].add(jl[x], 1);
@@ -127,7 +128,7 @@ add(rPanel,BorderLayout.SOUTH);
 		  sb.setOpaque(true);
 		  sb.setBackground(Color.YELLOW);
 	  }*/
-	  img.setPreferredSize(new Dimension(600,600));
+	  img.setPreferredSize(new Dimension(WIDTH,600));
 	  
   }
   public void check() {
@@ -135,8 +136,8 @@ add(rPanel,BorderLayout.SOUTH);
 		  boolean correct=true;
 		  ArrayList<String> pa=new ArrayList<>();
 		  for(int x=0;x<5;x++) {
-			  pa.add(res[x]+"");
-			  if(res[x]!=f.result[f.current][x])correct=false;
+			  pa.add(f.ra[f.current][res[x]]+"");
+			  if(f.ra[f.current][res[x]]!=f.result[f.current][x])correct=false;
 		  }
 		  pa.add(res[5]+"");
 		  if(res[5]!=f.result[f.current][5])correct=false;
