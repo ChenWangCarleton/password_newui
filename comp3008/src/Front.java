@@ -52,6 +52,7 @@ public class Front extends JFrame {
 	
 	//for entering
 	int[][] ra=new int[3][16];
+	int[]  rt= {0,1,2};
 	//images
 	String[][] img=new String[3][16];
     File[] source=new File("img").listFiles();
@@ -103,7 +104,7 @@ public class Front extends JFrame {
 			
 			//need to change here if want the user to enter random type of password
 			enterl[x]=new JLabel();
-			enterl[x].setText("Enter Password for: "+type[x]+" (3 Attempts Allowed)");
+			enterl[x].setText("Enter Password for: "+type[rt[x]]+" (3 Attempts Allowed)");
 			enterl[x].setPreferredSize(new Dimension(600,30));
 			
 			
@@ -155,7 +156,7 @@ public class Front extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					forentering fe=new forentering(Front.this, type[current]);
+					forentering fe=new forentering(Front.this, type[rt[current]]);
 					fe.pack();
 					fe.setVisible(true);
 					if(counter>3) {
@@ -218,11 +219,11 @@ public class Front extends JFrame {
 		userresult.add(third);
 		
 		for(int x=0;x<3;x++) {
-			tor=tor+"Correct password for "+type[x]+"->\n";
+			tor=tor+"Correct password for "+type[rt[x]]+"->\n";
 			for(int y=0;y<5;y++) {
-				tor=tor+result[x][y]+",";
+				tor=tor+result[rt[x]][y]+",";
 			}
-			tor=tor+result[x][5]+"\nYour input->\n";
+			tor=tor+result[rt[x]][5]+"\nYour input->\n";
 			for(int y=0;y<userresult.get(x).size();y++) {
 				tor=tor+userresult.get(x).get(y)+"\n";
 			}
@@ -230,6 +231,8 @@ public class Front extends JFrame {
 		return tor;
 	}
     public Front() {
+		shuffleArray(rt);
+	//	for(int x=0;x<3;x++)System.out.println(rt[x]);
     	setup();
     	this.setLayout(new GridLayout(8,0));
     	

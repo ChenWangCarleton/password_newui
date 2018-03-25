@@ -77,7 +77,7 @@ add(rPanel,BorderLayout.SOUTH);
 		  fornum[x]=new JLabel(num[x]);
 	  }
 	  for(int x=0;x<16;x++) {
-		  ii[x]=new ImageIcon(new ImageIcon(f.img[f.current][f.ra[f.current][x]]).getImage().getScaledInstance(WIDTH/4,149, Image.SCALE_DEFAULT));
+		  ii[x]=new ImageIcon(new ImageIcon(f.img[f.rt[f.current]][f.ra[f.rt[f.current]][x]]).getImage().getScaledInstance(WIDTH/4,149, Image.SCALE_DEFAULT));
 		  jl[x]=new JLabel(ii[x]);
 		  jl[x].setBounds(0, 0, WIDTH/4, 149);
 		  jlp[x]=new JLayeredPane();
@@ -116,31 +116,32 @@ add(rPanel,BorderLayout.SOUTH);
 		  });
 		  img.add(jlp[x]);
 	  }
-	/*  for(int x=0;x<5;x++) {
-		  fornum[x].setBounds(x*20, 0, 20, 20);
-		  jlp[f.result[f.current][x]].add(fornum[x], 0);
-	  }*/
-	 /* if(f.result[f.current][5]==0) {//radiobuttons
-		  fb.setOpaque(true);
-		  fb.setBackground(Color.YELLOW);
-	  }
-	  else {
-		  sb.setOpaque(true);
-		  sb.setBackground(Color.YELLOW);
-	  }*/
+
 	  img.setPreferredSize(new Dimension(WIDTH,600));
 	  
   }
   public void check() {
 	  if(current==5&&rb) {
+	/*	  for(int j=0;j<6;j++) {
+			  System.out.print(res[j]+",");
+		  }
+		  System.out.println();
+		  for(int j=0;j<6;j++) {
+			  System.out.print(f.result[f.rt[f.current]][j]+",");
+		  }
+		  System.out.println();  
+		  for(int j=0;j<6;j++) {
+			  System.out.print(f.ra[f.rt[f.current]][res[j]]+",");
+		  }
+		  System.out.println();  */
 		  boolean correct=true;
 		  ArrayList<String> pa=new ArrayList<>();
 		  for(int x=0;x<5;x++) {
-			  pa.add(f.ra[f.current][res[x]]+"");
-			  if(f.ra[f.current][res[x]]!=f.result[f.current][x])correct=false;
+			  pa.add(f.ra[f.rt[f.current]][res[x]]+"");
+			  if(f.ra[f.rt[f.current]][res[x]]!=f.result[f.rt[f.current]][x])correct=false;
 		  }
 		  pa.add(res[5]+"");
-		  if(res[5]!=f.result[f.current][5])correct=false;
+		  if(res[5]!=f.result[f.rt[f.current]][5])correct=false;
 		  if(f.current==0) {
 			  f.first.add(pa);//transfer the user's input to main program
 		  }
@@ -184,53 +185,7 @@ add(rPanel,BorderLayout.SOUTH);
 	  }
   public void setup() {
 	setupimg();
-/*	  
-  	fr.setText("Show Password");
-    fr.setPreferredSize(new Dimension(400,30));
-    fr.setSelected(true);
-    fr.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			for(int x=0;x<5;x++) {
-				  jlp[f.result[f.current][x]].add(fornum[x], 0);
-			}
-			  if(f.result[f.current][5]==0) {//radiobuttons
-				  fb.setOpaque(true);
-				  fb.setBackground(Color.YELLOW);
-			  }
-			  else {
-				  sb.setOpaque(true);
-				  sb.setBackground(Color.YELLOW);
-			  }
-			repaint();
-		}
-    	
-    });
-    sr.setText("Hide Password");
-    sr.setPreferredSize(new Dimension(400,30));
-    sr.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			for(int x=0;x<5;x++) {
-				  jlp[f.result[f.current][x]].remove(fornum[x]);
-			}
-			  if(f.result[f.current][5]==0) {//radiobuttons
-				  fb.setOpaque(false);
-			  }
-			  else {
-				  sb.setOpaque(false);
-			  }
-			repaint();
-		}
-    	
-    });
-    bgr.add(fr);
-    bgr.add(sr);
-    rt.add(fr,BorderLayout.WEST);
-    rt.add(sr,BorderLayout.EAST);
-	  */
+
     pmc.setPreferredSize(new Dimension(300,30));
     pmc.addActionListener(new ActionListener() {
 
@@ -245,10 +200,6 @@ add(rPanel,BorderLayout.SOUTH);
     help.setPreferredSize(new Dimension(80,30));
     buttons.add(pmc);
     buttons.add(help);
-    
- //   functionalb.add(rt);
- //   functionalb.add(buttons);
-    
 
   	fb.setText("0");
     fb.setPreferredSize(new Dimension(400,30));
