@@ -1,0 +1,9 @@
+USER_ID,TIMESTAMP,APP_NAME,ACTION
+RLR23Z,2018-03-27 00:08:11.135,Email,Tutorial - User entered tutorial
+RLR23Z,2018-03-27 00:08:18.609,Email,Tutorial - User is confident they have memorized password. Exiting tutorial.
+RLR23Z,2018-03-27 00:08:21.812,Banking,Tutorial - User entered tutorial
+RLR23Z,2018-03-27 00:08:27.451,Banking,Tutorial - User is confident they have memorized password. Exiting tutorial.
+RLR23Z,2018-03-27 00:08:29.869,Shopping,Tutorial - User entered tutorial
+RLR23Z,2018-03-27 00:08:33.833,Shopping,Tutorial - User is confident they have memorized password. Exiting tutorial.
+RLR23Z,2018-03-27 00:08:41.154,Email,User logged into app
+RLR23Z,2018-03-27 00:09:26.369,Email,User closed app

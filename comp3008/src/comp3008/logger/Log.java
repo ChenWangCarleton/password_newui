@@ -14,7 +14,16 @@ public class Log {
 	private String timestamp;
 	private String message;
 	private String userID;
+	private String applicationName;
 	
+	public String getApplicationName() {
+		return applicationName;
+	}
+
+	public void setApplicationName(String applicationName) {
+		this.applicationName = applicationName;
+	}
+
 	public String getUserID() {
 		return userID;
 	}
@@ -39,15 +48,16 @@ public class Log {
 		this.message = message;
 	}
 
-	public Log(String userID, String message){
+	public Log(String userID, String message, String applicationName){
 		this.timestamp = this.getCurrentTimeStamp();
 		this.message = message;
 		this.userID = userID;
+		this.applicationName = applicationName;
 		this.printLog();
 	}
 	
 	public void printLog(){
-		System.out.println(this.timestamp + ": User action recorded " + this.userID + " - "+ this.message);
+		System.out.println(this.timestamp + ": User " + this.userID + " action recorded in app " + this.applicationName + " - "+ this.message);
 	}
 	
 	private String getCurrentTimeStamp() {

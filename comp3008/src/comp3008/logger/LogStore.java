@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class LogStore {
 	private ConcurrentHashMap<Integer, Log> logs;
 	private static LogStore instance;
-	private static String LOG_DIR = "../../logs";
+	private static String LOG_DIR = "logs/";
 	
 	public LogStore() {
 		logs = new ConcurrentHashMap<Integer, Log>();
@@ -31,8 +31,8 @@ public class LogStore {
 		return logs;
 	}
 	
-	public Log createLog(String userID, String message) {
-		Log log = new Log(userID, message);
+	public Log createLog(String userID, String message, String applicationName) {
+		Log log = new Log(userID, message, applicationName);
 		logs.put(logs.size(), log); //add a new log at the next index
 		return log;
 	}
@@ -56,11 +56,17 @@ public class LogStore {
 		try {
 			PrintWriter pw = new PrintWriter(new File(LOG_DIR + "log_" + getCurrentTimeStamp() + ".csv"));
 			StringBuilder sb = new StringBuilder();
+			sb.append("USER_ID,"); // log
+			sb.append("TIMESTAMP,");
+			sb.append("APP_NAME,");
+			sb.append("ACTION");
+			sb.append("\n");
 			for(Enumeration<Log> logStore = LogStore.getInstance().getLogs().elements(); logStore.hasMoreElements();){
 				Log log  = logStore.nextElement();
 				sb.append(log.getUserID() + ","); // log
-				sb.append(log.getTimestamp() + ","); // log
-				sb.append(log.getMessage()); // log
+				sb.append(log.getTimestamp() + ",");
+				sb.append(log.getApplicationName() + ",");
+				sb.append(log.getMessage());
 				sb.append("\n");
 			}
 			System.out.println(sb.toString());
@@ -74,7 +80,7 @@ public class LogStore {
 	}
 	
 	private static String getCurrentTimeStamp() {
-	    return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
+	    return new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS").format(new Date());
 	}
 
 }

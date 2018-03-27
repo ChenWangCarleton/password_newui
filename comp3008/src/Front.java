@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,7 +36,7 @@ public class Front extends JFrame {
 		this.user = user;
 	}
 	
-	static String[] type= {"Email","Banking","Shopping"};
+    String[] type= {"Email","Banking","Shopping"};
 
 	//ui component
 	JLabel userl=new JLabel("User:"+user );
@@ -70,12 +72,14 @@ public class Front extends JFrame {
     int[] sour= {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
 	//flags
-	static int current=0;//0-2
+	int current=0;//0-2
 	static boolean isReady=false;//if next button should be selectable
 	boolean Entering=false;//if the user is entering the password
 	
 	
 	public void setup() {
+		
+		
     	for(int x=0;x<3;x++) {
     		for(int y=0;y<5;y++) {
     			result[x][y]=rand.nextInt(16);
@@ -260,6 +264,11 @@ public class Front extends JFrame {
        setTitle("Password Tester");
        setSize(700, 700);
        setDefaultCloseOperation(EXIT_ON_CLOSE);
+       this.addWindowListener(new WindowAdapter() {
+           public void windowClosing(WindowEvent e) {
+              LogStore.writeLogs();
+           }
+       });
     }
 
     //from internet
