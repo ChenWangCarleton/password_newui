@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -23,6 +25,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import comp3008.logger.LogStore;
 public class forentering extends JDialog implements ActionListener {
 	Front f;
 	int WIDTH=1000;
@@ -57,19 +61,30 @@ public class forentering extends JDialog implements ActionListener {
     ButtonGroup bgp=new ButtonGroup();
     JRadioButton fb=new JRadioButton();
     JRadioButton sb=new JRadioButton();
+    
 
   public forentering(Front f, String title) {
     super(f, title, true);
     if (f != null) {
     	this.f=f;
     }
-setup();
-//add(functionalb,BorderLayout.NORTH);
-add(img,BorderLayout.CENTER);
-add(rPanel,BorderLayout.SOUTH);
+    setup();
+    //add(functionalb,BorderLayout.NORTH);
+    add(img,BorderLayout.CENTER);
+    add(rPanel,BorderLayout.SOUTH);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     setSize(new Dimension(WIDTH,600));
+    LogStore.getInstance().createLog(f.getUser(), "User logged into app", f.type[f.current]);
+	
+    this.addWindowListener(new WindowAdapter() {
+        public void windowClosing(WindowEvent e) {
+           //System.exit(0);
+     	   //LogStore.writeLogs();
+     	   LogStore.getInstance().createLog(f.getUser(), "User closed app", f.type[f.current]);
+        }
+    });
   }
+  
   public void setupimg() {
 	  File[] fs=new File("icon").listFiles();
 	  for(int x=0;x<10;x++) {
@@ -100,6 +115,7 @@ add(rPanel,BorderLayout.SOUTH);
 					res[current]=x;
 					current++;
 					repaint();
+					LogStore.getInstance().createLog(f.getUser(), "User selected image", f.type[f.current]);
 					if(current==5)check();
 				}
 			}
@@ -118,11 +134,11 @@ add(rPanel,BorderLayout.SOUTH);
 	  }
 
 	  img.setPreferredSize(new Dimension(WIDTH,600));
-	  
+	  //LogStore.getInstance().createLog(f.getUser(), "Images displayed to user", f.type[f.current]);
   }
   public void check() {
 	  if(current==5&&rb) {
-	/*	  for(int j=0;j<6;j++) {
+    	 /* for(int j=0;j<6;j++) {
 			  System.out.print(res[j]+",");
 		  }
 		  System.out.println();
@@ -141,7 +157,7 @@ add(rPanel,BorderLayout.SOUTH);
 			  if(f.ra[f.rt[f.current]][res[x]]!=f.result[f.rt[f.current]][x])correct=false;
 		  }
 		  pa.add(res[5]+"");
-		  if(res[5]!=f.result[f.rt[f.current]][5])correct=false;
+		  if(res[5]!=f.result[f.rt[f.current]][5])correct=false; 
 		  if(f.current==0) {
 			  f.first.add(pa);//transfer the user's input to main program
 		  }
@@ -161,17 +177,22 @@ add(rPanel,BorderLayout.SOUTH);
 					  +"You can now go to next one!";
 			  f.enterb[f.current][1].setEnabled(true);
 			  setVisible(false);
+			  //log correct time here
+			  LogStore.getInstance().createLog(f.getUser(), "Login Success", f.type[f.current]);
 		  }
 		  else {
 			  if(f.counter<3) {
 				  result=result+"Sorry, incorrect.\n"
 						  +"You can have "+(3-f.counter)+" chances.";
+				  LogStore.getInstance().createLog(f.getUser(), "Login Attempt Fail", f.type[f.current]);
 			  }
 			  else {
 				  result=result+"Sorry, incorrect.\n"
 						  +"But you can close this window and go to next one.";
+				  LogStore.getInstance().createLog(f.getUser(), "Login Fail - No more attempts", f.type[f.current]);
 				  f.enterb[f.current][1].setEnabled(true);
 			  }
+			 //log incorrect time here
 		  }
   		JOptionPane.showMessageDialog(null, result);
   		current=0;

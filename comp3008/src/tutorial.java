@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -23,6 +25,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import comp3008.logger.LogStore;
 public class tutorial extends JDialog implements ActionListener {
 	Front f;
 	int WIDTH=1000;
@@ -62,12 +66,17 @@ public class tutorial extends JDialog implements ActionListener {
     if (f != null) {
     	this.f=f;
     }
-setup();
-add(functionalb,BorderLayout.NORTH);
-add(img,BorderLayout.CENTER);
-add(rPanel,BorderLayout.SOUTH);
+    setup();
+    add(functionalb,BorderLayout.NORTH);
+    add(img,BorderLayout.CENTER);
+    add(rPanel,BorderLayout.SOUTH);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     setSize(new Dimension(WIDTH,800));
+    this.addWindowListener(new WindowAdapter() {
+        public void windowClosing(WindowEvent e) {
+	        LogStore.getInstance().createLog(f.getUser(), "Tutorial - User closed tutorial", f.type[f.current]);
+	    }
+	});
   }
   public void setupimg() {
 	  File[] fs=new File("icon").listFiles();
@@ -100,6 +109,7 @@ add(rPanel,BorderLayout.SOUTH);
 					res[current]=x;
 					current++;
 					repaint();
+					LogStore.getInstance().createLog(f.getUser(), "User selected image", f.type[f.current]);
 					if(current==5)check();
 				}
 			}
@@ -138,8 +148,14 @@ add(rPanel,BorderLayout.SOUTH);
 			  if(res[x]!=f.result[f.current][x])correct=false;
 		  }
 		  String result="";
-		  if(correct)result=result+"Congratulations! Correct!!!";
-		  else result=result+"Sorry, incorrect. Please check the correct password again.";
+		  if(correct){
+			  LogStore.getInstance().createLog(f.getUser(), "Tutorial - User correctly memorized password", f.type[f.current]);
+			  result=result+"Congratulations! Correct!!!";
+		  }
+		  else {
+			  LogStore.getInstance().createLog(f.getUser(), "Tutorial - User incorrectly memorized password", f.type[f.current]);
+			  result=result+"Sorry, incorrect. Please check the correct password again.";
+		  }
   		JOptionPane.showMessageDialog(null, result);
   		current=0;
   		rb=false;
@@ -151,6 +167,8 @@ add(rPanel,BorderLayout.SOUTH);
 	  }
 	  }
   public void setup() {
+	LogStore.getInstance().createLog(f.getUser(), "Tutorial - User entered tutorial", f.type[f.current]);
+		
 	setupimg();
 	  
   	fr.setText("Show Password");
@@ -171,6 +189,7 @@ add(rPanel,BorderLayout.SOUTH);
 				  sb.setOpaque(true);
 				  sb.setBackground(Color.YELLOW);
 			  }
+			LogStore.getInstance().createLog(f.getUser(), "Tutorial - User toggled on selected images view", f.type[f.current]);
 			repaint();
 		}
     	
@@ -190,6 +209,7 @@ add(rPanel,BorderLayout.SOUTH);
 			  else {
 				  sb.setOpaque(false);
 			  }
+			LogStore.getInstance().createLog(f.getUser(), "Tutorial - User toggled off selected images view", f.type[f.current]);
 			repaint();
 		}
     	
@@ -206,6 +226,7 @@ add(rPanel,BorderLayout.SOUTH);
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			f.createb[f.current][1].setEnabled(true);
+			LogStore.getInstance().createLog(f.getUser(), "Tutorial - User is confident they have memorized password. Exiting tutorial.", f.type[f.current]);
 			setVisible(false);
 		}
     	
