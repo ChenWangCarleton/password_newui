@@ -1,0 +1,70 @@
+USER_ID,TIMESTAMP,APP_NAME,ACTION
+MA8MUC0KB,2018-03-27 08:58:51.235,Email,Tutorial - User entered tutorial
+MA8MUC0KB,2018-03-27 08:59:44.466,Email,User selected image
+MA8MUC0KB,2018-03-27 08:59:45.345,Email,User selected image
+MA8MUC0KB,2018-03-27 08:59:46.282,Email,User selected image
+MA8MUC0KB,2018-03-27 08:59:47.130,Email,User selected image
+MA8MUC0KB,2018-03-27 08:59:47.874,Email,User selected image
+MA8MUC0KB,2018-03-27 08:59:48.674,Email,Tutorial - User correctly memorized password
+MA8MUC0KB,2018-03-27 08:59:50.810,Email,Tutorial - User is confident they have memorized password. Exiting tutorial.
+MA8MUC0KB,2018-03-27 09:00:00.074,Banking,Tutorial - User entered tutorial
+MA8MUC0KB,2018-03-27 09:00:07.329,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:00:08.137,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:00:10.897,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:00:12.809,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:00:14.129,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:00:28.209,Banking,Tutorial - User is confident they have memorized password. Exiting tutorial.
+MA8MUC0KB,2018-03-27 09:00:33.257,Shopping,Tutorial - User entered tutorial
+MA8MUC0KB,2018-03-27 09:00:46.953,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:00:47.576,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:00:48.072,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:00:48.561,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:00:49.256,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:00:53.488,Shopping,Tutorial - User is confident they have memorized password. Exiting tutorial.
+MA8MUC0KB,2018-03-27 09:00:56.998,Email,User logged into app
+MA8MUC0KB,2018-03-27 09:01:11.112,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:11.928,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:13.560,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:20.095,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:20.600,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:21.639,Email,Login Attempt Fail
+MA8MUC0KB,2018-03-27 09:01:24.776,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:25.375,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:26.288,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:27.047,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:27.744,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:29.088,Email,Login Attempt Fail
+MA8MUC0KB,2018-03-27 09:01:37.695,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:39.215,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:39.823,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:40.295,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:40.943,Email,User selected image
+MA8MUC0KB,2018-03-27 09:01:42.014,Email,Login Fail - No more attempts
+MA8MUC0KB,2018-03-27 09:01:44.351,Email,User closed app
+MA8MUC0KB,2018-03-27 09:01:55.070,Banking,User logged into app
+MA8MUC0KB,2018-03-27 09:02:22.358,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:23.158,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:25.845,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:26.590,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:34.670,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:35.589,Banking,Login Attempt Fail
+MA8MUC0KB,2018-03-27 09:02:39.038,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:42.781,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:44.629,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:47.445,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:50.381,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:51.245,Banking,Login Attempt Fail
+MA8MUC0KB,2018-03-27 09:02:58.661,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:02:59.333,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:03:00.013,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:03:00.677,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:03:01.437,Banking,User selected image
+MA8MUC0KB,2018-03-27 09:03:02.693,Banking,Login Fail - No more attempts
+MA8MUC0KB,2018-03-27 09:03:05.357,Banking,User closed app
+MA8MUC0KB,2018-03-27 09:03:07.976,Shopping,User logged into app
+MA8MUC0KB,2018-03-27 09:03:12.101,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:03:13.669,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:03:14.629,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:03:15.501,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:03:22.021,Shopping,User selected image
+MA8MUC0KB,2018-03-27 09:03:22.871,Shopping,Login Success
