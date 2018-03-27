@@ -22,13 +22,24 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
+import comp3008.logger.LogStore;
+
 public class Front extends JFrame {
 	Random rand=new Random();
 	String user=randomIdentifier();
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
+	}
+	
 	static String[] type= {"Email","Banking","Shopping"};
 
 	//ui component
 	JLabel userl=new JLabel("User:"+user );
+
+
 	JLabel textl=new JLabel();
 	
 	
@@ -211,6 +222,7 @@ public class Front extends JFrame {
 	}
 	public void end() {
     	JOptionPane.showMessageDialog(null, toString());
+    	LogStore.writeLogs();
 	}
 	public String toString() {
 		String tor="";
