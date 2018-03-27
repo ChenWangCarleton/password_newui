@@ -226,7 +226,7 @@ public class Front extends JFrame {
 	}
 	public void end() {
     	JOptionPane.showMessageDialog(null, toString());
-    	LogStore.writeLogs();
+    	//LogStore.writeLogs();
 	}
 	public String toString() {
 		String tor="";
