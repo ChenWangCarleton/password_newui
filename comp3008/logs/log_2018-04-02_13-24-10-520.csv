@@ -1,0 +1,38 @@
+USER_ID,TIMESTAMP,APP_NAME,ACTION
+W6XU9,2018-04-02 13:23:28.185,Email,Tutorial - User entered tutorial
+W6XU9,2018-04-02 13:23:31.351,Email,Tutorial - User is confident they have memorized password. Exiting tutorial.
+W6XU9,2018-04-02 13:23:32.737,Banking,Tutorial - User entered tutorial
+W6XU9,2018-04-02 13:23:34.786,Banking,Tutorial - User is confident they have memorized password. Exiting tutorial.
+W6XU9,2018-04-02 13:23:36.357,Shopping,Tutorial - User entered tutorial
+W6XU9,2018-04-02 13:23:38.416,Shopping,Tutorial - User is confident they have memorized password. Exiting tutorial.
+W6XU9,2018-04-02 13:23:41.835,Email,User logged into app
+W6XU9,2018-04-02 13:23:42.444,Email,User selected image
+W6XU9,2018-04-02 13:23:43.809,Email,User selected image
+W6XU9,2018-04-02 13:23:44.946,Email,User selected image
+W6XU9,2018-04-02 13:23:46.071,Email,User closed app
+W6XU9,2018-04-02 13:23:50.602,Email,User logged into app
+W6XU9,2018-04-02 13:23:51.291,Email,User selected image
+W6XU9,2018-04-02 13:23:51.456,Email,User selected image
+W6XU9,2018-04-02 13:23:51.598,Email,User selected image
+W6XU9,2018-04-02 13:23:51.754,Email,User selected image
+W6XU9,2018-04-02 13:23:51.913,Email,User selected image
+W6XU9,2018-04-02 13:23:53.399,Email,Login Attempt Fail
+W6XU9,2018-04-02 13:23:55.149,Email,User selected image
+W6XU9,2018-04-02 13:23:55.287,Email,User selected image
+W6XU9,2018-04-02 13:23:55.442,Email,User selected image
+W6XU9,2018-04-02 13:23:55.586,Email,User selected image
+W6XU9,2018-04-02 13:23:55.732,Email,User selected image
+W6XU9,2018-04-02 13:23:56.638,Email,Login Attempt Fail
+W6XU9,2018-04-02 13:23:58.179,Email,User selected image
+W6XU9,2018-04-02 13:23:58.330,Email,User selected image
+W6XU9,2018-04-02 13:23:58.494,Email,User selected image
+W6XU9,2018-04-02 13:23:58.654,Email,User selected image
+W6XU9,2018-04-02 13:23:58.811,Email,User selected image
+W6XU9,2018-04-02 13:23:59.773,Email,Login Fail - No more attempts
+W6XU9,2018-04-02 13:24:02.643,Email,User closed app
+W6XU9,2018-04-02 13:24:07.507,Shopping,User logged into app
+W6XU9,2018-04-02 13:24:08.026,Shopping,User selected image
+W6XU9,2018-04-02 13:24:08.187,Shopping,User selected image
+W6XU9,2018-04-02 13:24:08.355,Shopping,User selected image
+W6XU9,2018-04-02 13:24:08.526,Shopping,User selected image
+W6XU9,2018-04-02 13:24:09.431,Shopping,User closed app

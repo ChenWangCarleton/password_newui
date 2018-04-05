@@ -62,25 +62,26 @@ public class forentering extends JDialog implements ActionListener {
     JRadioButton fb=new JRadioButton();
     JRadioButton sb=new JRadioButton();
     
-
+    String title = "";
   public forentering(Front f, String title) {
     super(f, title, true);
     if (f != null) {
     	this.f=f;
     }
     setup();
+    this.title = title;
     //add(functionalb,BorderLayout.NORTH);
     add(img,BorderLayout.CENTER);
     add(rPanel,BorderLayout.SOUTH);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     setSize(new Dimension(WIDTH,600));
-    LogStore.getInstance().createLog(f.getUser(), "User logged into app", f.type[f.current]);
+    LogStore.getInstance().createLog(f.getUser(), "User logged into app", title);
 	
     this.addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent e) {
            //System.exit(0);
      	   //LogStore.writeLogs();
-     	   LogStore.getInstance().createLog(f.getUser(), "User closed app", f.type[f.current]);
+     	   LogStore.getInstance().createLog(f.getUser(), "User closed app", title);
         }
     });
   }
@@ -115,7 +116,7 @@ public class forentering extends JDialog implements ActionListener {
 					res[current]=x;
 					current++;
 					repaint();
-					LogStore.getInstance().createLog(f.getUser(), "User selected image", f.type[f.current]);
+					LogStore.getInstance().createLog(f.getUser(), "User selected image", title);
 					if(current==5)check();
 				}
 			}
@@ -178,18 +179,18 @@ public class forentering extends JDialog implements ActionListener {
 			  f.enterb[f.current][1].setEnabled(true);
 			  setVisible(false);
 			  //log correct time here
-			  LogStore.getInstance().createLog(f.getUser(), "Login Success", f.type[f.current]);
+			  LogStore.getInstance().createLog(f.getUser(), "Login Success", title);
 		  }
 		  else {
 			  if(f.counter<3) {
 				  result=result+"Sorry, incorrect.\n"
 						  +"You can have "+(3-f.counter)+" chances.";
-				  LogStore.getInstance().createLog(f.getUser(), "Login Attempt Fail", f.type[f.current]);
+				  LogStore.getInstance().createLog(f.getUser(), "Login Attempt Fail", title);
 			  }
 			  else {
 				  result=result+"Sorry, incorrect.\n"
 						  +"But you can close this window and go to next one.";
-				  LogStore.getInstance().createLog(f.getUser(), "Login Fail - No more attempts", f.type[f.current]);
+				  LogStore.getInstance().createLog(f.getUser(), "Login Fail - No more attempts", title);
 				  f.enterb[f.current][1].setEnabled(true);
 			  }
 			 //log incorrect time here
