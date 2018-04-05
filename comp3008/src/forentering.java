@@ -27,25 +27,22 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import comp3008.logger.LogStore;
+/*
+Author: Chen Wang
+Purpose of this class: 
+This class is for creating the page for entering
+
+*/
 public class forentering extends JDialog implements ActionListener {
 	Front f;
 	int WIDTH=1000;
 	//radiobutton part
 	//password
 	int[] res=new int[6];
-	int current=0;
-	boolean rb=false;
-	//for tutorial
-	//JPanel functionalb=new JPanel(new GridLayout(2,0));
-	
-  //  JPanel rt = new JPanel(new BorderLayout());//radio button part
-  //  ButtonGroup bgr=new ButtonGroup();
- //   JRadioButton fr=new JRadioButton();
- //   JRadioButton sr=new JRadioButton();
-    
-    JPanel buttons=new JPanel( new FlowLayout(FlowLayout.LEFT));
-    JButton pmc=new JButton("Password memorized - Continue");
-    JButton help=new JButton("Help");
+	int current=0;//which digit of password is in
+	boolean rb=false;//is radiobutton chosen
+
+
     
     //images
     JPanel img=new JPanel(new GridLayout(4,4));
@@ -70,7 +67,6 @@ public class forentering extends JDialog implements ActionListener {
     }
     setup();
     this.title = title;
-    //add(functionalb,BorderLayout.NORTH);
     add(img,BorderLayout.CENTER);
     add(rPanel,BorderLayout.SOUTH);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -86,9 +82,9 @@ public class forentering extends JDialog implements ActionListener {
     });
   }
   
-  public void setupimg() {
+  public void setupimg() {//to prepare the images
 	  File[] fs=new File("icon").listFiles();
-	  for(int x=0;x<10;x++) {
+	  for(int x=0;x<10;x++) {//this is for little number icon to indicate the order of images
 		  num[x]=new ImageIcon(new ImageIcon(fs[x].getPath()).getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
 		  fornum[x]=new JLabel(num[x]);
 	  }
@@ -106,7 +102,7 @@ public class forentering extends JDialog implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if(current<5) {
+				if(current<5) {//show number icon for user to know the x th image for the password is chosen
 					int x=0;
 					for(;x<16;x++) {
 						if(jlp[x]==(JLayeredPane)e.getSource())break;
@@ -137,20 +133,9 @@ public class forentering extends JDialog implements ActionListener {
 	  img.setPreferredSize(new Dimension(WIDTH,600));
 	  //LogStore.getInstance().createLog(f.getUser(), "Images displayed to user", f.type[f.current]);
   }
-  public void check() {
+  public void check() {//to check if the user chosen all 5 images and the radio buttons. 
 	  if(current==5&&rb) {
-    	 /* for(int j=0;j<6;j++) {
-			  System.out.print(res[j]+",");
-		  }
-		  System.out.println();
-		  for(int j=0;j<6;j++) {
-			  System.out.print(f.result[f.rt[f.current]][j]+",");
-		  }
-		  System.out.println();  
-		  for(int j=0;j<6;j++) {
-			  System.out.print(f.ra[f.rt[f.current]][res[j]]+",");
-		  }
-		  System.out.println();  */
+ 
 		  boolean correct=true;
 		  ArrayList<String> pa=new ArrayList<>();
 		  for(int x=0;x<5;x++) {
@@ -205,23 +190,9 @@ public class forentering extends JDialog implements ActionListener {
   		repaint();
 	  }
 	  }
-  public void setup() {
+  public void setup() {//to set up the components
 	setupimg();
 
-    pmc.setPreferredSize(new Dimension(300,30));
-    pmc.addActionListener(new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			f.createb[f.current][1].setEnabled(true);
-			setVisible(false);
-		}
-    	
-    });
-    help.setPreferredSize(new Dimension(80,30));
-    buttons.add(pmc);
-    buttons.add(help);
 
   	fb.setText("0");
     fb.setPreferredSize(new Dimension(400,30));
@@ -257,10 +228,7 @@ public class forentering extends JDialog implements ActionListener {
       
 
   }
-  
-//pack()
-  //setVisible(true);
-
+ 
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub

@@ -27,14 +27,20 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import comp3008.logger.LogStore;
+/*
+Author: Chen Wang
+Purpose of this class: 
+This class is for creating the page for displaying the correct password
+
+*/
 public class tutorial extends JDialog implements ActionListener {
 	Front f;
 	int WIDTH=1000;
 	//radiobutton part
 	//password
 	int[] res=new int[6];
-	int current=0;
-	boolean rb=false;
+	int current=0;//which digit of password is in
+	boolean rb=false;//is radiobutton chosen
 	//for tutorial
 	JPanel functionalb=new JPanel(new GridLayout(2,0));
 	
@@ -78,14 +84,14 @@ public class tutorial extends JDialog implements ActionListener {
 	    }
 	});
   }
-  public void setupimg() {
+  public void setupimg() {//to prepare the images
 	  File[] fs=new File("icon").listFiles();
-	  for(int x=0;x<10;x++) {
+	  for(int x=0;x<10;x++) {//this is for little number icon to indicate the order of images
 		  num[x]=new ImageIcon(new ImageIcon(fs[x].getPath()).getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
 		  fornum[x]=new JLabel(num[x]);
 	  }
 	  for(int x=0;x<16;x++) {
-		  ii[x]=new ImageIcon(new ImageIcon(f.img[f.current][x]).getImage().getScaledInstance(WIDTH/4,149, Image.SCALE_DEFAULT));
+		  ii[x]=new ImageIcon(new ImageIcon(f.img[f.current][x]).getImage().getScaledInstance(WIDTH/4,149, Image.SCALE_DEFAULT));//get image path from front
 		  jl[x]=new JLabel(ii[x]);
 		  jl[x].setBounds(0, 0, WIDTH/4, 149);
 		//  jl[x].setPreferredSize(new Dimension(200,150));
@@ -99,7 +105,7 @@ public class tutorial extends JDialog implements ActionListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if(current<5) {
+				if(current<5) {//show number icon for user to know the x th image for the password is chosen
 					int x=0;
 					for(;x<16;x++) {
 						if(jlp[x]==(JLayeredPane)e.getSource())break;
@@ -141,7 +147,7 @@ public class tutorial extends JDialog implements ActionListener {
 	  img.setPreferredSize(new Dimension(WIDTH,600));
 	  
   }
-  public void check() {
+  public void check() {//to check if the user chosen all 5 images and the radio buttons. 
 	  if(current==5&&rb) {
 		  boolean correct=true;
 		  for(int x=0;x<6;x++) {
@@ -166,7 +172,7 @@ public class tutorial extends JDialog implements ActionListener {
   		repaint();
 	  }
 	  }
-  public void setup() {
+  public void setup() {//to set up the components
 	LogStore.getInstance().createLog(f.getUser(), "Tutorial - User entered tutorial", f.type[f.current]);
 		
 	setupimg();
@@ -176,7 +182,7 @@ public class tutorial extends JDialog implements ActionListener {
     fr.setSelected(true);
     fr.addActionListener(new ActionListener() {
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent arg0) {//display the correct password by number icon on images and background color for radiobutton
 			// TODO Auto-generated method stub
 			for(int x=0;x<5;x++) {
 				  jlp[f.result[f.current][x]].add(fornum[x], 0);
@@ -196,7 +202,7 @@ public class tutorial extends JDialog implements ActionListener {
     });
     sr.setText("Hide Password");
     sr.setPreferredSize(new Dimension(400,30));
-    sr.addActionListener(new ActionListener() {
+    sr.addActionListener(new ActionListener() {//hide the correct password
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
@@ -220,7 +226,7 @@ public class tutorial extends JDialog implements ActionListener {
     rt.add(sr,BorderLayout.EAST);
 	  
     pmc.setPreferredSize(new Dimension(300,30));
-    pmc.addActionListener(new ActionListener() {
+    pmc.addActionListener(new ActionListener() {//the user confirmed that the correct password is memorized, the user can go to next part in front
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -238,7 +244,7 @@ public class tutorial extends JDialog implements ActionListener {
     functionalb.add(rt);
     functionalb.add(buttons);
     
-
+//fb sb are radio button for 0 or 1
   	fb.setText("0");
     fb.setPreferredSize(new Dimension(400,30));
     fb.addActionListener(new ActionListener() {

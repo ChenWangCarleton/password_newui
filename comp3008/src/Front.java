@@ -25,10 +25,15 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import comp3008.logger.LogStore;
+/*
+Author: Chen Wang
+Purpose of this class: 
+This class is for creating the front page of the new password scheme.
 
+*/
 public class Front extends JFrame {
-	Random rand=new Random();
-	String user=randomIdentifier();
+	Random rand=new Random();//for generating random int
+	String user=randomIdentifier();//random user name is generated
 	public String getUser() {
 		return user;
 	}
@@ -42,34 +47,34 @@ public class Front extends JFrame {
 	JLabel userl=new JLabel("User:"+user );
 
 
-	JLabel textl=new JLabel();
+	JLabel textl=new JLabel();//in case system status is asked to show to user
 	
 	
-	JPanel[] createp=new JPanel[3];
+	JPanel[] createp=new JPanel[3];//panel for each part (6 parts in total, 3 for displaying correct password, 3 for inputing password
 	JPanel[] enterp=new JPanel[3];
-	JLabel[] createl=new JLabel[3];
+	JLabel[] createl=new JLabel[3];//label for each part
 	JLabel[] enterl=new JLabel[3];
-	JPanel[] createbp=new JPanel[3];
+	JPanel[] createbp=new JPanel[3];//panel for buttons
 	JPanel[] enterbp=new JPanel[3];
-	JButton[][] createb=new JButton[3][2];
-	JButton[][] enterb=new JButton[3][2];
+	JButton[][] createb=new JButton[3][2];//buttons createb[x][0] for displaying correct password,createb[x][1] for go to next one
+	JButton[][] enterb=new JButton[3][2];//enterb[x][0] for entering password, enterb[x][1] for go to next one
 	
 	
 	//password related
-	int[][] result=new int[3][6];
-	ArrayList<ArrayList<ArrayList<String>>> userresult=new ArrayList<>();
+	int[][] result=new int[3][6];// correct password
+	ArrayList<ArrayList<ArrayList<String>>> userresult=new ArrayList<>();//for displaying to user
 	ArrayList<ArrayList<String>> first=new ArrayList<>();
 	ArrayList<ArrayList<String>> second=new ArrayList<>();
 	ArrayList<ArrayList<String>> third=new ArrayList<>();
 	int counter=0;//flags for how many attempts the user had for current password
 	
 	//for entering
-	int[][] ra=new int[3][16];
-	int[]  rt= {0,1,2};
+	int[][] ra=new int[3][16];//for random order of images in entering
+	int[]  rt= {0,1,2};//for random order of category of password
 	//images
-	String[][] img=new String[3][16];
+	String[][] img=new String[3][16];//images' path
     File[] source=new File("img").listFiles();
-    int[] sour= {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    int[] sour= {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};//use for random
 
 	//flags
 	int current=0;//0-2
@@ -77,31 +82,31 @@ public class Front extends JFrame {
 	boolean Entering=false;//if the user is entering the password
 	
 	
-	public void setup() {
+	public void setup() {//to prepare all component
 		
 		
     	for(int x=0;x<3;x++) {
     		for(int y=0;y<5;y++) {
     			result[x][y]=rand.nextInt(16);
     		}
-    		result[x][5]=rand.nextInt(2);
+    		result[x][5]=rand.nextInt(2);//generate result
     	}
 		for(int y=0;y<3;y++) {
 			shuffleArray(sour);
 			for(int x=0;x<16;x++) {
 				img[y][x]=source[sour[x]].listFiles()[rand.nextInt(source[sour[x]].listFiles().length)].getPath();
 			}
-		}
+		}//generate images order
 		for(int y=0;y<3;y++) {
 			shuffleArray(sour);
 			for(int x=0;x<16;x++) {
 				ra[y][x]=sour[x];
 			}
-		}	
+		}	//random images order for entering
 		userl.setPreferredSize(new Dimension(600,50));
 		textl.setPreferredSize(new Dimension(600,50));
 
-		for(int x=0;x<3;x++) {
+		for(int x=0;x<3;x++) {//initialize the buttons
 			createp[x]=new JPanel();
 			createp[x].setBackground(Color.LIGHT_GRAY);
 			createp[x].setPreferredSize(new Dimension(600,100));
@@ -138,7 +143,7 @@ public class Front extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					tutorial tut=new tutorial(Front.this, type[current]);
+					tutorial tut=new tutorial(Front.this, type[current]);//open up a page to show correct password
 					tut.pack();
 					tut.setVisible(true);
 				}
@@ -148,11 +153,11 @@ public class Front extends JFrame {
 			createb[x][1].addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent arg0) {//go to next part
 					// TODO Auto-generated method stub
 					createb[current][0].setEnabled(false);
 					createb[current][1].setEnabled(false);					
-					if(current==2) {
+					if(current==2) {//check if its time for user to entering
 						Entering=true;
 						isReady=false;
 						current=0;
@@ -169,7 +174,7 @@ public class Front extends JFrame {
 			enterb[x][0].addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) {//go to entering page
 					// TODO Auto-generated method stub
 					forentering fe=new forentering(Front.this, type[rt[current]]);
 					fe.pack();
@@ -184,7 +189,7 @@ public class Front extends JFrame {
 			enterb[x][1].addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent arg0) {//go to next part, check if ends
 					// TODO Auto-generated method stub
 					enterb[current][0].setEnabled(false);
 					enterb[current][1].setEnabled(false);		
@@ -224,11 +229,11 @@ public class Front extends JFrame {
 		}
 		createb[0][0].setEnabled(true);
 	}
-	public void end() {
+	public void end() {//if ends, show a page for correct passwords and user's inputs
     	JOptionPane.showMessageDialog(null, toString());
     	//LogStore.writeLogs();
 	}
-	public String toString() {
+	public String toString() {//get user's input and correct answer
 		String tor="";
 		userresult.add(first);
 		userresult.add(second);
@@ -248,12 +253,10 @@ public class Front extends JFrame {
 	}
     public Front() {
 		shuffleArray(rt);
-	//	for(int x=0;x<3;x++)System.out.println(rt[x]);
     	setup();
     	this.setLayout(new GridLayout(8,0));
     	
     	add(userl);
-    //	add(textl);
     	for(int x=0;x<3;x++) {
     		add(createp[x]);
     	}
@@ -270,12 +273,8 @@ public class Front extends JFrame {
            }
        });
     }
-
-    //from internet
+//used to generate random user name
     final String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345674890";
-
-    // consider using a Map<String,Boolean> to say whether the identifier is being used or not 
- //   final Set<String> identifiers = new HashSet<>();
 
     public String randomIdentifier() {
         StringBuilder builder = new StringBuilder();
@@ -284,22 +283,17 @@ public class Front extends JFrame {
             for(int i = 0; i < length; i++) {
                 builder.append(lexicon.charAt(rand.nextInt(lexicon.length())));
             }
-    //        if(identifiers.contains(builder.toString())) {
-    //            builder = new StringBuilder();
-    //        }
         }
         return builder.toString();
     }
     
-    //from internet
+    //used to shuffle array
     static void shuffleArray(int[] ar)
     {
-      // If running on Java 6 or older, use `new Random()` on RHS here
       Random rnd = ThreadLocalRandom.current();
       for (int i = ar.length - 1; i > 0; i--)
       {
         int index = rnd.nextInt(i + 1);
-        // Simple swap
         int a = ar[index];
         ar[index] = ar[i];
         ar[i] = a;
